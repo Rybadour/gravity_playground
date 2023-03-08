@@ -1,0 +1,96 @@
+#page #content
+{
+	letter-spacing: 1px;
+}
+
+#content
+{
+}
+
+#canvasHolder
+{
+	margin: 10px 240px 10px 10px;
+	cursor: crosshair;
+}
+
+#controlsPanel
+{
+	padding: 4px;
+	float: right;
+	width: 230px;
+}
+
+#controlsPanel .ui-tabs
+{
+	border: 0;
+}
+
+#controlsPanel .ui-tabs .ui-tabs-panel
+{
+	padding: 0;
+}
+
+#controlsPanel .ui-tabs .ui-tabs-nav li a
+{
+	padding: 2px 6px;
+}
+
+#controlsPanel table th
+{
+	
+}
+
+#controlsPanel table tr
+{
+	margin: 2px 0px;
+	border: 1px solid gray;
+}
+
+#controlsPanel table td
+{
+	padding: 2px;
+}
+
+#entityMass
+{
+	width: 80px;
+}
+
+#selectedList
+{
+	list-style: none;
+	padding-left: 0;
+	border: 1px solid black;
+	border-collapse: collapse;
+	
+	margin: 0 auto;
+}
+
+#selectedList tr:first-child
+{
+	border-bottom: 2px solid black;
+}
+
+#selectedList td, #selectedList th
+{
+	padding: 3px;
+	border: 1px solid black;
+	text-align: center;
+}
+
+.entity input, #gridSpacing, #mapWidth, #mapHeight
+{
+	width: 80px;
+}
+
+#controlsPanel #controls
+{
+	padding-top: 30px;
+}
+
+#settings th
+{
+	margin-top: 20px;
+	display: inline-block;
+	text-align: center;
+}

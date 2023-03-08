@@ -1,0 +1,98 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="gravity.css"></style>
+    <link rel="stylesheet" href="jquery-ui.gravity.css"></style>
+
+    <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+    <script src="js/jquery-ui.gravity.js"></script>
+    <script src="js/canvasHelper.js"></script>
+    <script src="js/EffectManager.js"></script>
+    <script src="js/Entity.js"></script>
+    <script src="js/LineSegment.js"></script>
+    <script src="js/ObjectManager.js"></script>
+    <script src="js/PathLayer.js"></script>
+    <script src="js/RippleEffect.js"></script>
+    <script src="js/Sounds.js"></script>
+    <script src="js/UI.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/Vector2.js"></script>
+    <script src="js/gravity.js"></script>
+  </head>
+
+	<div id="compatWarn">
+		<p>Your browser cannot display some things in this application correctly. I'd recommend upgrading to the latest version of Firefox, Chrome or Internet Explorer!</p>
+	</div>
+
+	<div id="controlsPanel">
+		<div id="tabs">
+			<ul class="tabnav">
+				<li><a href="#settings">Settings</a></li>
+				<li><a href="#controls">Controls</a></li>
+				<li><a href="#entities">Entities</a></li>
+			</ul>
+		
+			<div id="settings">
+				<table>
+				<tr><th colspan="2">App values:</th></tr>
+				<tr><td>Entities:</td><td id="numEntities"></td></tr>
+				<tr><td>Show Entity Ids:</td><td><input id="showEntityNames" type="checkbox" checked="checked" onclick="UI.showEntityNames(this)" /></td></tr>
+				<tr><td>Show Effects:</td><td><input id="showEffects" type="checkbox" checked="checked" onclick="UI.showEffects(this)" /></td></tr>
+				<tr><td>Show Grid:</td><td><input id="showGrid" type="checkbox" checked="checked" onclick="UI.showGrid(this)" /></td></tr>
+				<tr><td>Show Velocity Vectors:</td><td><input id="showVelocity" type="checkbox" onclick="UI.showVelocityVectors(this)" /></td></tr>
+				<tr><td>Use High Speed Collision Detection:</td><td><input id="useHighSpeedCollision" type="checkbox" onclick="UI.useHighSpeedCollision(this)" /></td></tr>
+				<tr><td>Grid Spacing:</td><td><input id="gridSpacing" type="text" onchange="UI.changeGridSpacing()" /></td></tr>
+				<tr><td>Map Width:</td><td><input id="mapWidth" type="text" onchange="UI.changeMapWidth()" /></td></tr>
+				<tr><td>Map Height:</td><td><input id="mapHeight" type="text" onchange="UI.changeMapHeight()" /></td></tr>
+				
+				<tr><th colspan="2">Spawn With:</th></tr>
+				<tr><td>Mass:</td><td><input type="text" id="entityMass" value="10" /></td></tr>
+				<tr><td>Is Movable:</td><td><input type="checkbox" id="entityMovable" checked="checked" /></td></tr>
+
+				<tr><th colspan="2">Actions:</th></tr>
+				<tr><td colspan="2"><input type="button" value="Delete All Enitities" onclick="ObjectManager.deleteAll()" /></td></tr>
+				<tr><td colspan="2"><input id="pause" type="button" value="Pause" onclick="togglePause()" /></td></tr>
+				<tr><td colspan="2"><input id="mute" type="button" value="Mute" onclick="toggleMute()" /></td></tr>
+				<tr><td>Volume (<span id="volumePercent"></span>):</td><td><div id="volume"></div></td></tr>
+				<tr><td colspan="2">Zoom: <span id="zoomLevel"></span></td></tr>
+				<tr><td colspan="2"><input type="button" value="+" onclick="UI.changeZoomBy(1)" /><input type="button" value="-" onmousedown="UI.changeZoomBy(-1)" /></td></tr>
+				</table>
+			</div>
+			
+			<div id="controls">
+				<table>
+				<tr><td>Click:</td>        <td>Select a single entity</td></tr>
+				<tr><td>Click + Drag:</td> <td>Select many entities</td></tr>
+				<tr><td>Click + Ctrl:</td> <td>Add more selected entities</td></tr>
+				<tr><td>Right Click:</td>  <td>Spawns an entity (drag to add a velocity to it)</td></tr>
+				<tr><td>Middle Click:</td> <td>Pivots the camera around the simulation</td></tr>
+				<tr><td>D:</td>            <td>Deletes selected entities</td></tr>
+				<tr><td>M:</td>            <td>Toggles the movability of selected entities</td></tr>
+				<tr><td>L:</td>            <td>Locks the screen on a single entity</td></tr>
+				<tr><td>V:</td>            <td>Centers the screen on a single entity</td></tr>
+				<tr><td>Space:</td>        <td>Pause/Unpause the simulation</td></tr>
+				<tr><td>Arrow Keys:</td>   <td>Pivots the camera around the simulation</td></tr>
+				<tr><td>Scroll Wheel:</td>   <td>Zooms the map in and out</td></tr>
+				</table>
+			</div>
+			
+			<div id="entities">
+				<h3>Actions</h3>
+				<table>
+				<tr><td colspan="2"><input class="entityButton manyAction" type="button" value="Delete Selected" onclick="UI.deleteSelected()" /></td></tr>
+				<tr><td colspan="2"><input class="entityButton manyAction" type="button" value="Toggle Selected Movability" onclick="UI.toggleSelectedMovability()" /></td></tr>
+				<tr><td colspan="2"><input class="entityButton singleAction" type="button" value="Locks On Entity" onclick="UI.centerOnSelected()" /></td></tr>
+				<tr><td colspan="2"><input class="entityButton singleAction" type="button" value="View Entity" onclick="UI.viewSelected()" /></td></tr>
+				</table>
+			
+				<h3>Selected Entities</h3>
+				<table id="selectedList">
+				<tr><th>Id</th><th>Mass</th><th>Is Movable</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div id="canvasHolder">
+		<canvas id="gravityApp"></canvas>
+	</div>
+</html>
